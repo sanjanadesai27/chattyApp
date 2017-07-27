@@ -10,9 +10,9 @@ const PORT = 3001;
 
 // Create a new express server
 const server = express()
-   // Make the express server serve static assets (html, javascript, css) from the /public folder
-  .use(express.static('public'))
-  .listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
+// Make the express server serve static assets (html, javascript, css) from the /public folder
+.use(express.static('public'))
+.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
 
 // Create the WebSockets server
 const wss = new SocketServer({ server });
@@ -24,12 +24,17 @@ wss.on('connection', (ws) => {
   console.log('Client connected');
   ws.on('message',(message) => {
     const newMessage = JSON.parse(message);
-    newMessage.id = uuid();
+    if(newMessage.type === 'postMessage') { 
+      newMessage.type = 'incomingMessage';  
+      newMessage.id = uuid();
+    } else if (newMessage.type === 'postNotification'){ 
+      newMessage.type = 'incomingNotification';
+    }
     wss.broadcast(JSON.stringify(newMessage));
   }); 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => console.log('Client disconnected'));
-
+  
 });
 
 wss.broadcast = function broadcast(data) {
