@@ -7,7 +7,8 @@
     }
 
     .chatbar {
-      background: #a6db94;
+      background: #cbfcba;
+      border-radius: 5px;
       border-top: 1px solid whitesmoke;
       bottom: 0;
       display: flex;
@@ -19,7 +20,8 @@
 
     .chatbar-message,
     .chatbar-username {
-      border: 1px solid black;
+      border-radius: 5px; 
+      border: 1px solid whitesmoke;
       display: block;
       height: 40px;
       line-height: 40px;
