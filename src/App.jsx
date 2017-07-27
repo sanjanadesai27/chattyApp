@@ -8,7 +8,8 @@ class App extends Component {
     super(props);
     this.socket;
     this.state = {
-      currentUser: {}, // optional. if currentUser is not defined, it means the user is Anonymous
+      numUsers : 0,
+      currentUser: {name: 'Anonymous'}, // optional. if currentUser is not defined, it means the user is Anonymous
       messages: [],
       notifications: ''
     };
@@ -25,25 +26,30 @@ class App extends Component {
     }
     
     this.socket.onmessage = (event) => {
-      const incomingData = JSON.parse(event.data);
-      switch(incomingData.type) {
-        case 'incomingMessage':
-          const newMessage = incomingData;
-          const newMessages = this.state.messages.concat(newMessage);
-          this.setState({
-            messages: newMessages
-          });
-          console.log(this.state.messages);
-          break;
-        case 'incomingNotification':
-          console.log(this.state.currentUser.name);
-          //handle user name update - must know previous username and new username
-          // const oldName = this.state.currentUser.prevName;
-          // const newName = this.state.currentUser.name;
-          // this.state.notifications = `${oldName} changed their name to ${newName}`;
-          break;
-        // default: 
-        //   throw new Error("Unknown event type" + event.data.type);
+      if(typeof JSON.parse(event.data) === 'number') {
+        this.setState({
+          numUsers: JSON.parse(event.data)
+        });
+      } else { 
+        const incomingData = JSON.parse(event.data);
+        switch(incomingData.type) {
+          case 'incomingMessage':
+            const newMessage = incomingData;
+            const newMessages = this.state.messages.concat(newMessage);
+            this.setState({
+              messages: newMessages
+            });
+            break;
+          case 'incomingNotification':
+            const notification = incomingData;
+            const newNotifications = this.state.messages.concat(notification);
+            this.setState({
+              messages: newNotifications
+            });
+            break;
+          // default: 
+          //   throw new Error("Unknown event type" + event.data.type);
+        }
       }  
     }
   }
@@ -54,24 +60,18 @@ class App extends Component {
       username: this.state.currentUser.name, 
       content: text
     };
-    if(!this.state.currentUser.name){ 
-      newMessage.username = 'Anonymous';
-    }
     this.socket.send(JSON.stringify(newMessage)); 
   }
   
   updatedUsername(name){
     const updatedUsername = {
       type: 'postNotification',
-      prevName: this.state.currentUser.name,
+      content: `${this.state.currentUser.name} has changed their name to ${name}`,
       name: name
     };
-    if(!updatedUsername.prevName) { 
-      updatedUsername.prevName = 'Anonymous';
-    }
     this.setState({
-      currentUser: updatedUsername,
-      messages: this.state.messages.concat(updatedUsername)
+      currentUser: updatedUsername
+      //messages: this.state.messages.concat(updatedUsername)
     });
     this.socket.send(JSON.stringify(updatedUsername));
   }
@@ -80,9 +80,10 @@ class App extends Component {
     return (
       <div>
       <nav className="navbar">
-      <a href="/" className="navbar-brand">Chatty</a>
+      <span className='userCounter'>users online: {this.state.numUsers}</span>  
+      <a href="/" className="navbar-brand">Chatty 🍑</a>
       </nav>
-      <MessageList messages={this.state.messages} notifications={this.state.notifications} /> 
+      <MessageList messages={this.state.messages} /> 
       <ChatBar updatedUsername={this.updatedUsername} onNewMessage={this.onNewMessage}/>
       </div>
     );

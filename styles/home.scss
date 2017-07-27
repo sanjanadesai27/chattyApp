@@ -1,14 +1,14 @@
  body {
       background: white;
-      color: black;
-      font-family: 'Open Sans', sans-serif;
+      color: #31382e;
+      font-family: 'PT Sans', sans-serif;
       font-size: 14px;
       margin: 70px 0;
     }
 
     .chatbar {
-      background: tomato;
-      border-top: 1px solid black;
+      background: #a6db94;
+      border-top: 1px solid whitesmoke;
       bottom: 0;
       display: flex;
       left: 0;
@@ -62,8 +62,8 @@
     }
 
     .navbar {
-      background: tomato;
-      border-bottom: 1px solid black;
+      background: #cbfcba;
+      border-bottom: 1px solid whitesmoke;
       height: 60px;
       left: 0;
       padding: 0 10px;
@@ -82,4 +82,9 @@
       line-height: 60px;
       padding: 0 10px;
       text-decoration: none;
+    }
+    .userCounter {
+      float: right;
+      margin-right: 20px;
+      margin-top: 20px; 
     }
