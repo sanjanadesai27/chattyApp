@@ -71,7 +71,6 @@ class App extends Component {
     };
     this.setState({
       currentUser: updatedUsername
-      //messages: this.state.messages.concat(updatedUsername)
     });
     this.socket.send(JSON.stringify(updatedUsername));
   }
@@ -79,12 +78,12 @@ class App extends Component {
   render() {
     return (
       <div>
-      <nav className="navbar">
-      <span className='userCounter'>users online: {this.state.numUsers}</span>  
-      <a href="/" className="navbar-brand">Chatty 🍑</a>
-      </nav>
-      <MessageList messages={this.state.messages} /> 
-      <ChatBar updatedUsername={this.updatedUsername} onNewMessage={this.onNewMessage}/>
+        <nav className="navbar">
+          <span className='userCounter'>users online: {this.state.numUsers}</span>  
+          <a href="/" className="navbar-brand">Chatty 🍑</a>
+        </nav>
+        <MessageList messages={this.state.messages} /> 
+        <ChatBar updatedUsername={this.updatedUsername} onNewMessage={this.onNewMessage}/>
       </div>
     );
   }

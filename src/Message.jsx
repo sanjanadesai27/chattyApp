@@ -20,7 +20,3 @@ class Message extends Component {
 }
 export default Message;
 
-//TODO
-// <div className="message system">
-//   Anonymous1 changed their name to nomnom.
-// </div>
