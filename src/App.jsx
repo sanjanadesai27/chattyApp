@@ -47,8 +47,8 @@ class App extends Component {
               messages: newNotifications
             });
             break;
-          // default: 
-          //   throw new Error("Unknown event type" + event.data.type);
+          default: 
+            throw new Error('Unknown event type' + incomingData.type);
         }
       }  
     }
