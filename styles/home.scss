@@ -43,7 +43,7 @@
     }
 
     .message.system {
-      color: peachpuff;
+      color: darken(peachpuff, 15%);
       text-shadow:	#b9ffda;
       font-style: italic;
       padding: 5px 20px;
@@ -68,6 +68,7 @@
     .navbar {
       background: #cbfcba;
       border-bottom: 1px solid whitesmoke;
+      box-shadow: 2px 2px 2px lightgrey;
       height: 60px;
       left: 0;
       padding: 0 10px;
