@@ -25,5 +25,5 @@ Chatty uses WebSockets to manage client connections, and React for smooth and st
 ### Screenshots
 ![Screenshot of homepage](https://github.com/sanjanadesai27/chattyApp/blob/master/docs/homepage.png)
 ![Screenshot of chat with multiple users connected](https://github.com/sanjanadesai27/chattyApp/blob/master/docs/multiple_users.png)
-![Screenshot of responsive chat window]((https://github.com/sanjanadesai27/chattyApp/blob/master/docs/chatty_responsive_smallwindow.png)
+![Screenshot of responsive chat window](https://github.com/sanjanadesai27/chattyApp/blob/master/docs/chatty_responsive_smallwindow.png)
 
