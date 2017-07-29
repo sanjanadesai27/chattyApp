@@ -22,8 +22,8 @@ const wss = new SocketServer({ server });
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
   console.log('Client connected');
-
-
+  
+  
   let numUsers = wss.clients.size;
   console.log('Number of clients ' + numUsers);
   wss.broadcast(JSON.stringify(numUsers));
@@ -31,10 +31,15 @@ wss.on('connection', (ws) => {
   ws.on('message',(message) => {
     const newMessage = JSON.parse(message);
     newMessage.id = newMessage.id = uuid();
-    if(newMessage.type === 'postMessage') { 
-      newMessage.type = 'incomingMessage';  
-    } else if (newMessage.type === 'postNotification'){ 
-      newMessage.type = 'incomingNotification';
+    if(newMessage.content.charAt(0) === '/'){
+      newMessage.content = newMessage.content.split(' ').shift().replace('/','');
+      newMessage.type = 'incomingImage';
+    } else { 
+      if(newMessage.type === 'postMessage') { 
+        newMessage.type = 'incomingMessage';  
+      } else if (newMessage.type === 'postNotification'){ 
+        newMessage.type = 'incomingNotification';
+      }
     }
     wss.broadcast(JSON.stringify(newMessage));
   }); 

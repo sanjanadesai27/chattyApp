@@ -8,7 +8,9 @@ class MessageList extends Component {
         return <Message 
         key={message.id}
         user={message.username}
-        content={message.content} /> 
+        content={message.content} 
+        type = {message.type}
+        /> 
     // }
   });
     return (

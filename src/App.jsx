@@ -47,8 +47,14 @@ class App extends Component {
               messages: newNotifications
             });
             break;
-          default: 
-            throw new Error('Unknown event type' + incomingData.type);
+          case 'incomingImage': 
+            const image = incomingData;
+            const newImages = this.state.messages.concat(image);
+            this.setState({
+              messages: newImages
+            });
+          // default: 
+          //   throw new Error('Unknown event type' + incomingData.type);
         }
       }  
     }
