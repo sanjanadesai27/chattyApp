@@ -1,7 +1,7 @@
 Chatty App
 =====================
 
-Chatty is a little chat app with a little ressemblance to the highly-popular chat app Slack. Although it is much less feature heavy, Chatty lets you get the point home by allowing you to set your name, and send messages to your friends with the press of a single key. Chatty also allows you to see how many users are connected at any given time so you know if your messages are being seen by others too.
+Chatty is a little chat app with a little ressemblance to the highly-popular chat app Slack. Although it is much less feature heavy, Chatty lets you get the point home by allowing you to set your name, and send **messages and images** to your friends with the press of a single key. Chatty also allows you to see how many users are connected at any given time so you know if your messages are being seen by others too.
 
 Chatty uses WebSockets to manage client connections, and React for smooth and steady DOM (--virtual DOM) manipulation.
 
@@ -26,4 +26,5 @@ Chatty uses WebSockets to manage client connections, and React for smooth and st
 ![Screenshot of homepage](https://github.com/sanjanadesai27/chattyApp/blob/master/docs/homepage.png)
 ![Screenshot of chat with multiple users connected](https://github.com/sanjanadesai27/chattyApp/blob/master/docs/multiple_users.png)
 ![Screenshot of responsive chat window](https://github.com/sanjanadesai27/chattyApp/blob/master/docs/chatty_responsive_smallwindow.png)
+![Screenshot of image sending capability](https://github.com/sanjanadesai27/chattyApp/blob/master/docs/image_capability.png)
 
